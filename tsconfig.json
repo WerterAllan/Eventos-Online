@@ -1,0 +1,12 @@
+{
+    "compileOnSave": true,
+    
+    "compilerOptions": {
+        "target": "ESNext",
+        "outDir": "./dist",
+        "watch": true,
+        "noEmitOnError": true
+    }
+   
+
+}
