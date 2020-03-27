@@ -1,42 +1,41 @@
-import { Palestra } from "../model/palestra";
+import { PalestraModel } from "../model/palestra-model";
 import { BaseApi } from "./base-api.js";
+import { ModelBase } from "../model/model-base";
 
-export class Servico extends BaseApi {
+export class ServicoApi<T extends ModelBase> extends BaseApi {
 
-    private _recurso = 'palestras';
-
-    constructor() {
-        super('http://5e780ba1491e9700162ddc3e.mockapi.io/Evento')
-
-    }
-
-    public listarPalestras(): Promise<Palestra[]> {
-
-        return this.get(this._recurso);
+    constructor(recuros: string) {
+        super( recuros )
 
     }
 
-    public palestraPorId(id: string): Promise<Palestra> {
+    public obter(): Promise<T[]> {
+
+        return this.get();
+
+    }
+
+    public obterPorId(id: string): Promise<T> {
         
-        return this.get(`${this._recurso}/${id}`);
+        return this.get(id);
             
     }
 
-    public adicionar(palestras: Palestra | Palestra[]): Promise<any> {
+    public adicionar(item: T | T[]): Promise<any> {
 
-        return this.post(this._recurso, palestras);
+        return this.post( item );
 
     }
 
-    public atualizar(palestra: Palestra): Promise<any> {
+    public atualizar(item: T): Promise<any> {
 
-        return this.put(`${this._recurso}/${palestra.id}`, palestra);
+        return this.put(item.id, item);
 
     }
     
     public deletar(id: string): Promise<any> {
 
-        return this.delete(this._recurso, id);
+        return this.delete(id);
 
     }
 }

@@ -1,6 +1,6 @@
-import { Servico } from "../../api/servico-api.js";
+import { ServicoApi } from "../../api/servico-api.js";
 import { ModalEditarPalestra } from "./modal-editar-palestra.js";
-import { Palestra } from "../../model/palestra.js";
+import { PalestraModel } from "../../model/palestra-model.js";
 import { ModalDeletarPalestra } from "./modal-deletar-palestra.js";
 import { HtmlPalestraUtil } from "../../utils/html-palestra-util.js";
 import { PaginaBase } from "../../compartilhado/pagina-base.js";
@@ -9,11 +9,11 @@ import { PaginaBase } from "../../compartilhado/pagina-base.js";
 export class PalestrasPagina extends PaginaBase {
 
 
-    private _api: Servico;
+    private _api: ServicoApi<PalestraModel>;
 
     constructor() {
         super("PalestrasPagina");
-        this._api = new Servico();
+        this._api = new ServicoApi('palestras');
     }
 
     public html(): string {
@@ -49,7 +49,7 @@ export class PalestrasPagina extends PaginaBase {
 
     public async aposRenderizar(): Promise<string> {
 
-        let palestras = await this._api.listarPalestras();
+        let palestras = await this._api.obter();
 
         let html = palestras.map(x => {
             return `
@@ -109,7 +109,7 @@ export class PalestrasPagina extends PaginaBase {
 
     }
 
-    private atualizarGrid(palestra: Palestra): void {
+    private atualizarGrid(palestra: PalestraModel): void {
 
         let
             palestraElemento = document.getElementById(`palestra_${palestra.id}`),

@@ -15,6 +15,7 @@ const roteador = async () => {
         (requisicao.verbo ? `/` + requisicao.verbo : ``);
 
         
+    console.log('rotas', ListaDeRotas)
 
     let pagina = ListaDeRotas[urlParseada] ? ListaDeRotas[urlParseada] : new Error404();
     console.log(`pagina`, {

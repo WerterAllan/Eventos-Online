@@ -1,4 +1,6 @@
-export class Palestra {
+import { ModelBase } from "./model-base.js";
+
+export class PalestraModel extends ModelBase {
     
     
     constructor(
@@ -8,5 +10,6 @@ export class Palestra {
         public data: Date
 
     ) {
+        super(id);
     }
 }

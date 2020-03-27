@@ -1,17 +1,11 @@
 import { PalestrasPagina } from "./paginas/palestras/palestras-pagina.js";
-import { PaginaBase } from "./compartilhado/pagina-base.js";
+import { PalestrantesPagina } from "./paginas/palestrantes/palestrantes-pagina.js";
+import { PaginaPrincipal } from "./paginas/home/pagina-principal.js";
 
 
-export class Rota {
-    public rota: string;
-    public pagina: PaginaBase;
-
-}
-
-
-
-export const ListaDeRotas =
-{
-    "/": new PalestrasPagina()
+export const ListaDeRotas = {
+    "/": new PaginaPrincipal(),
+    "/palestras": new PalestrasPagina(),
+    "/palestrantes": new PalestrantesPagina()
 }
 

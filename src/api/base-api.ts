@@ -1,21 +1,23 @@
 export abstract class BaseApi {
 
-    constructor(private _api: string) {
+    private _apiBase = "http://5e780ba1491e9700162ddc3e.mockapi.io/Evento";
+
+    constructor(private _recurso: string) {
 
     }
+    
+    protected get(id: string = ''): Promise<any> {
 
-    protected get(acao: string): Promise<any> {
-
-        return fetch(`${this._api}/${acao}`, {
+        return fetch(`${this._apiBase}/${this._recurso}` + (!!id ? `/${id}` : '')  , {
             method: 'GET'
         })
         .then(x => x.json())
 
     }
 
-    protected post(acao: string, corpo: any): Promise<any> {
+    protected post(corpo: any): Promise<any> {
 
-        return fetch(`${this._api}/${acao}`, {
+        return fetch(`${this._apiBase}/${this._recurso}`, {
             method: 'POST',
             headers: [
                 ["Content-Type", "application/json"]
@@ -26,11 +28,11 @@ export abstract class BaseApi {
     }
 
 
-    protected put(acao: string, corpo: any): Promise<any> {
+    protected put(id: string, corpo: any): Promise<any> {
 
         console.log('acao', corpo)
 
-        return fetch(`${this._api}/${acao}`, {          
+        return fetch(`${this._apiBase}/${this._recurso}/${id}`, {          
             method: 'PUT',
             headers: [
                 ["Content-Type", "application/json"]
@@ -40,9 +42,9 @@ export abstract class BaseApi {
 
     }
 
-    protected delete(acao: string, id: string): Promise<any> {
+    protected delete( id: string): Promise<any> {
 
-        return fetch(`${this._api}/${acao}/${id}`, {
+        return fetch(`${this._apiBase}/${this._recurso}/${id}`, {
 
             method: 'DELETE'
 

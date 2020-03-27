@@ -1,13 +1,13 @@
-import { Palestra } from "../../model/palestra.js";
+import { PalestraModel } from "../../model/palestra-model.js";
 import { ConversaoGenericaUtil } from "../../utils/conversao-generica-util.js";
 import { HtmlPalestraUtil } from "../../utils/html-palestra-util.js";
 import { ModalBase } from "../../compartilhado/modal-base.js";
 
 
 
-export class ModalEditarPalestra extends ModalBase<Palestra> {
+export class ModalEditarPalestra extends ModalBase<PalestraModel> {
   
-  private _palestraSelecionada: Palestra;
+  private _palestraSelecionada: PalestraModel;
 
   constructor(
     private _palestraId: string
@@ -38,9 +38,9 @@ export class ModalEditarPalestra extends ModalBase<Palestra> {
 
   }
 
-  private extrairPalestraDoHtml(): Palestra {
+  private extrairPalestraDoHtml(): PalestraModel {
 
-    return new Palestra(
+    return new PalestraModel(
       this.coluna<string>(0),
       this.coluna<string>(1),
       this.coluna<string>(2),
