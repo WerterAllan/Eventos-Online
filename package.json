@@ -1,0 +1,19 @@
+{
+  "name": "eventosonline",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WerterAllan/Eventos-Online.git"
+  },
+  "author": "werter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WerterAllan/Eventos-Online/issues"
+  },
+  "homepage": "https://github.com/WerterAllan/Eventos-Online#readme"
+}

@@ -2,12 +2,15 @@ import { PalestraModel } from "../../model/palestra-model.js";
 import { ConversaoGenericaUtil } from "../../utils/conversao-generica-util.js";
 import { HtmlPalestraUtil } from "../../utils/html-palestra-util.js";
 import { ModalBase } from "../../compartilhado/modal-base.js";
+import { ServicoApi } from "../../api/servico-api.js";
+import { PalestranteModel } from "../../model/palestrante-model.js";
 
 
 
 export class ModalEditarPalestra extends ModalBase<PalestraModel> {
   
   private _palestraSelecionada: PalestraModel;
+  private _api: ServicoApi<PalestranteModel>;
 
   constructor(
     private _palestraId: string
@@ -15,7 +18,7 @@ export class ModalEditarPalestra extends ModalBase<PalestraModel> {
     
     super("ModalEditarPalestra", "Editar Palestra");
     this._palestraSelecionada = this.extrairPalestraDoHtml();
-    console.log('palestra selecionada', this._palestraSelecionada);
+    this._api = new ServicoApi<PalestranteModel>('palestrantes');
 
   }
 
@@ -111,6 +114,21 @@ export class ModalEditarPalestra extends ModalBase<PalestraModel> {
     
 
         `;
+
+
+
+      public async montarHtmlDePalestrante(): Promise<string> {
+
+        const palestrantes = await this._api.obter();
+
+        return palestrantes.map(x => {
+          return `
+              <option value="${x.nome}" >${x.nome}</option>
+          `
+        })
+        .join('');
+
+      }
 
 
 
